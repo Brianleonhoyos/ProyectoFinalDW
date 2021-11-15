@@ -10,13 +10,13 @@ require('./database');
 //Configuracion
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
-app.engine('handlebars', engine({
+app.engine('.hbs', engine({
     defaultLayout: 'main',
     layoutsDir: path.join(app.get('views'), 'layouts'),
     partialsDir: path.join(app.get('views'), 'partials'),
     extname: '.hbs'
 }));
-app.set('view engine', '.handlebars');
+app.set('view engine', '.hbs');
 
 //Funciones ejecutadas antes del servidor
 app.use(express.urlencoded({ extended: false }));
@@ -29,9 +29,9 @@ app.use(session({
 //Variables globales
 
 //Rutas
-app.use(require('./src/routes/index'));
-app.use(require('./src/routes/notes'));
-app.use(require('./src/routes/users'));
+app.use(require('./routes/indexRutas'));
+app.use(require('./routes/notesRutas'));
+app.use(require('./routes/usersRutas'));
 //Archivos estaticos
 app.use(express.static(path.join(__dirname, 'public')));
 //inicializacion servidor
