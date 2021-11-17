@@ -25,16 +25,37 @@ router.post('/notes/new-note', async function (req, res) {
     }
     else {
         //res.send('ok');
-        const newNote = new Note({title, description});
+        const newNote = new Note({ title, description });
         await newNote.save();
         //console.log(newNote);
+        req.flash('success_msg', 'Nota agregada Satisfactoriamente');
         res.redirect('/notes');
     }
 });
 
 router.get('/notes', async function (req, res) {
-    const notes = await Note.find();
-    res.render('notes/all-notes', {notes});
+    const notes = await Note.find().sort({ date: 'desc' });
+    //console.log(notes);
+    res.render('notes/all-notes', { notes });
+});
+
+router.get('/notes/edit/:id', async function (req, res) {
+    const note = await Note.findById(req.params.id);
+    res.render('notes/edit-note', { note });
+});
+
+router.put('/notes/edit-note/:id', async function (req, res) {
+    const { title, description } = req.body;
+    await Note.findByIdAndUpdate(req.params.id, { title, description });
+    req.flash('success_msg', 'Nota actualizada satisfactoriamente');
+    res.redirect('/notes');
+});
+
+router.delete('/notes/delete/:id', async function (req, res) {
+    //console.log(req.params.id);
+    await Note.findByIdAndDelete(req.params.id);
+    req.flash('success_msg', 'Nota eliminada satisfactoriamente');
+    res.redirect('/notes');
 });
 
 module.exports = router;
