@@ -11,3 +11,17 @@ body {
 .logo{
     width: 50%;
 }
+
+.img_c {
+    height: 80vh;
+    object-fit: cover;
+}
+
+.opacidad{
+    background-color: #ffffffa3;
+}
+
+.opacidad h5,p{
+    color: #000000;
+    letter-spacing: 1px;
+}
