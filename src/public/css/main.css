@@ -8,7 +8,7 @@ body {
 
 }
 
-.logo{
+.logo {
     width: 50%;
 }
 
@@ -17,11 +17,19 @@ body {
     object-fit: cover;
 }
 
-.opacidad{
+.opacidad {
     background-color: #ffffffa3;
 }
 
-.opacidad h5,p{
+.opacidad h5,
+p {
     color: #000000;
     letter-spacing: 1px;
+}
+
+
+.navbar-expand-lg .navbar-collapse {
+    display: flex!important;
+    flex-basis: auto;
+    justify-content: space-between;
 }
